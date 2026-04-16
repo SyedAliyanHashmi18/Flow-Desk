@@ -30,28 +30,30 @@ export default function SignInForm() {
   });
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
-    const result = await signIn('credentials', {
-      redirect: false,
-      identifier: data.identifier,
-      password: data.password,
-      callbackUrl: "/dashboard",
-    });
+  const result = await signIn("credentials", {
+    redirect: false,
+    identifier: data.identifier,
+    password: data.password,
+  });
 
-    if (result?.error) {
-      if (result.error === 'CredentialsSignin') {
-        toast.error('Incorrect username or password');
-      } else {
-        toast.error(result.error);
-      }
+  if (result?.error) {
+    if (result.error === "CredentialsSignin") {
+      toast.error("Incorrect username or password");
+    } else {
+      toast.error(result.error);
     }
+    return;
+  }
 
-      if (result?.ok) {
+  if (result?.ok) {
+    toast.success("Login successful");
+
+    // small delay ensures session is set
+    setTimeout(() => {
       router.push("/dashboard");
-    }
-
-  };
-
-  return (
+    }, 300);
+  }
+};  return (
     <div className="flex justify-center items-center min-h-screen ">
       <div className="w-full max-w-md p-8 space-y-8  rounded-lg shadow-md">
         <div className="text-center">
