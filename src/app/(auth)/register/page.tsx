@@ -186,7 +186,7 @@ export function page() {
             <Button type="submit" 
                 className="hidden md:inline-block bg-[#4fffb0] text-[#050a10] px-[1.4rem] py-[0.55rem] rounded-xl font-bold text-[0.9rem] hover:opacity-90 transition-all hover:-translate-y-px"
             
-            disabled={isSubmitting || usernameMessage !== "Username is available"}>
+            disabled={isSubmitting }>
               {
               isSubmitting ? (
               <>
