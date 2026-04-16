@@ -1,0 +1,55 @@
+import dbConnect from "@/lib/dbConnect";
+import UserModel from "@/models/user";
+import { usernameValidation } from "@/schemas/register";
+import z from "zod";
+
+
+const usernameQuerySchema = z.object({
+    username: usernameValidation
+})
+export async function GET(request:Request) {
+
+    await dbConnect();
+
+    try {
+        const {searchParams}= new URL(request.url);
+
+        const queryParams = {
+            username: searchParams.get('username')?.trim()
+        }
+
+        const result = usernameQuerySchema.safeParse(queryParams)
+
+        if(!result.success){
+             const usernameError = result.error.format().username?._errors || [];
+            return Response.json({
+                success: false,
+                message:usernameError?.length > 0 ? usernameError.join(", ") : "Invalid username format",
+            }, {status: 200});
+        }
+
+         const existingVerifiedUser = await UserModel.findOne({
+            username: result.data.username,
+            emailVerified: true
+        });
+        if(existingVerifiedUser){
+            return Response.json({
+                success: false,
+                message: "Username is already taken"
+            }, {status: 200});
+        }
+        return Response.json({
+            success: true,
+            message: "Username is available"
+        }, {status: 200});
+
+    } catch (error) {
+        console.error("Database connection error:", error);
+        return Response.json({
+            success: false,
+            message: "Database connection error"
+        }, {status: 500});
+        
+    }
+    
+}
