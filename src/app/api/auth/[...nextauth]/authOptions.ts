@@ -4,6 +4,7 @@ import UserModel from "@/models/user";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthConfig } from "next-auth";
 export const authOptions : NextAuthConfig = {
+    trustHost: true,
     providers: [
         CredentialsProvider({
             id: "credentials",
@@ -105,4 +106,9 @@ export const authOptions : NextAuthConfig = {
     pages: {
         signIn: "/signin",
     },
+    cookies: {
+        sessionToken: {
+            name: `next-auth.session-token`,
+        },
+        },
 };
