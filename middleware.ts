@@ -9,22 +9,32 @@ export async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
-  if (token && (pathname === "/signin" || pathname === "/register")) {
+  const isAuthPage =
+    pathname.startsWith("/signin") || pathname.startsWith("/register");
+
+  const isProtectedRoute =
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/api/projects") ||
+    pathname.startsWith("/api/tasks");
+
+  // 🔥 if logged in and trying auth pages → redirect dashboard
+  if (token && isAuthPage) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  if (
-    !token &&
-    (pathname === "/dashboard" ||
-      pathname.startsWith("/api/projects") ||
-      pathname.startsWith("/api/tasks"))
-  ) {
+  // 🔥 if NOT logged in and trying protected pages → redirect signin
+  if (!token && isProtectedRoute) {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
 
   return NextResponse.next();
 }
-
 export const config = {
-  matcher: ["/dashboard/:path*", "/api/projects/:path*", "/api/tasks/:path*"],
+  matcher: [
+    "/dashboard/:path*",
+    "/signin",
+    "/register",
+    "/api/projects/:path*",
+    "/api/tasks/:path*",
+  ],
 };
