@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   await dbConnect();
 
   const session = await auth();
-  const userId = session?.user._id;
+  const userId = session?.user.id;
 
   const { name } = await req.json();
 

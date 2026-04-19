@@ -20,7 +20,7 @@ export async function GET(request: Request, {params}: {params : Promise<{id : st
 
         const tasks = await TaskModel.find({
             projectId,
-            userId : session.user._id,
+            userId : session.user.id,
             title : { $regex: query, $options: "i" },
         })
 
