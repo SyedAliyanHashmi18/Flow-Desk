@@ -50,7 +50,7 @@ export async function deleteAITasks(projectId:string) {
 
   const project = await ProjectModel.findOne({
     _id: projectId,
-    userId: session.user._id,
+    userId: session.user.id,
   });
 
   if (!project) {

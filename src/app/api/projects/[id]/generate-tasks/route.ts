@@ -14,7 +14,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
 
     const { projectGoal } = await request.json();
     const { id: projectId } = await params;
-    const userId = session.user._id;
+    const userId = session.user.id;
 
     await checkAIRateLimit(userId);
 

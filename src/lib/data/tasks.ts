@@ -27,7 +27,7 @@ export async function createTask(projectId: string, input: unknown) {
 }
   const project = await ProjectModel.findOne({
     _id: projectId,
-    userId: session.user._id,
+    userId: session.user.id,
   });
 
   if (!project) {
@@ -43,7 +43,7 @@ export async function createTask(projectId: string, input: unknown) {
   const nextOrder = lastTask ? lastTask.order + 1 :0;
 
   const newTask = TaskModel.create({
-    userId: session.user._id,
+    userId: session.user.id,
     projectId: projectId,
     title: result.data.title,
     description: result.data.description,
@@ -76,7 +76,7 @@ export async function getTasksByProjectId(projectId: string) {
 
   const project = await ProjectModel.findOne({
     _id: projectId,
-    userId: session.user._id,
+    userId: session.user.id,
   });
 
   if (!project) {
@@ -117,7 +117,7 @@ export async function updateTask(taskId: string, input: unknown) {
   }
 
   const updatedTask = await TaskModel.findOneAndUpdate(
-    { _id: taskId, userId: session.user._id },
+    { _id: taskId, userId: session.user.id },
     { $set: result.data },
      { returnDocument: "after" }
   ).lean();
@@ -142,14 +142,14 @@ export async function deleteTask(taskId: string) {
   }
   const task = await TaskModel.findOne({
     _id: taskId,
-    userId: session.user._id,
+    userId: session.user.id,
   });
   if (!task) {
     throw new Error("Task not found");
   }
   await TaskModel.deleteOne({
   _id: taskId,
-  userId: session.user._id
+  userId: session.user.id
 });
 
 await ProjectModel.updateOne(

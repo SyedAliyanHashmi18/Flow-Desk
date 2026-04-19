@@ -18,7 +18,7 @@ export async function createProject( input: unknown) {
   if (!session) {
     throw new Error("Unauthorized");
   }
-  const userId = session.user._id;
+  const userId = session.user.id;
   const result = projectSchema.safeParse(input);
 
   if (!result.success) {
@@ -62,7 +62,7 @@ export async function getProjectsByUserId() {
     redirect("/signin");}
 
   return ProjectModel.find({
-    userId: session.user._id,
+    userId: session.user.id,
   }).sort({ createdAt: -1 }).lean();
 }
 
@@ -86,7 +86,7 @@ export async function updateProject(projectId: string,input: unknown) {
     }
 
     const updateProject = await ProjectModel.findOneAndUpdate(
-      { _id: projectId, userId: session.user._id },
+      { _id: projectId, userId: session.user.id },
       { $set: result.data },
       { returnDocument: "after" }
     ).lean();
@@ -112,7 +112,7 @@ export async function deleteProject(projectId: string) {
 
   const project = await ProjectModel.findOne({
     _id: projectId,
-    userId: session.user._id,
+    userId: session.user.id,
   });
 
   if (!project) {
@@ -126,7 +126,7 @@ export async function deleteProject(projectId: string) {
   await ProjectModel.deleteOne({ _id: projectId });
 
   await UserModel.updateOne(
-    { _id: session.user._id },
+    { _id: session.user.id },
     { $inc: { projectCount: -1 } }
   );
 
@@ -153,7 +153,7 @@ export async function deleteProject(projectId: string) {
 
 //     const project = await ProjectModel.findOne({
 //       _id: projectId,
-//       userId: session.user._id,
+//       userId: session.user.id,
 //     }, null, { session: mongooSession });
 
 //     if (!project) {
@@ -165,7 +165,7 @@ export async function deleteProject(projectId: string) {
 //     await ProjectModel.deleteOne({ _id: projectId }, { session: mongooSession });
 
 //     await UserModel.updateOne(
-//       { _id: session.user._id },
+//       { _id: session.user.id },
 //       { $inc: { projectCount: -1 } },
 //       { session: mongooSession }
 //     );

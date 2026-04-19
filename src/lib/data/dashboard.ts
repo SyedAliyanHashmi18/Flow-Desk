@@ -15,7 +15,7 @@ export async function getDashboardAnalytics() {
         redirect("/signin");
     }
 
-    const userId = session.user._id;
+    const userId = session.user.id;
 
     const projects = await ProjectModel.find({ userId}).lean();
 
