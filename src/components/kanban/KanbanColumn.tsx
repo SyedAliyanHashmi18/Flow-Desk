@@ -9,9 +9,10 @@ interface Props {
   title: string;
   status: "pending" | "in-progress" | "completed";
   tasks: Task[];
+  changeStatus: (taskId: string, status: string) => void;
 }
 
-export default function KanbanColumn({ title, tasks, status }: Props) {
+export default function KanbanColumn({ title, tasks, status, changeStatus }: Props) {
 
   const { setNodeRef } = useDroppable({
     id: status,
@@ -26,7 +27,7 @@ export default function KanbanColumn({ title, tasks, status }: Props) {
       <AnimatePresence>
       <CardContent className="space-y-3 w-full ">
         {tasks.map((task) => (
-          <KanbanTask key={task._id} task={task} />
+          <KanbanTask key={task._id} task={task} changeStatus={changeStatus} />
         ))}
       </CardContent>
       </AnimatePresence>

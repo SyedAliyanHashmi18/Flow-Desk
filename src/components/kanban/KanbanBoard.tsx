@@ -159,18 +159,21 @@ export default function KanbanBoard({ tasks,projectId,setTasks,setAllTasks}: Pro
         title="Pending"
         status="pending"
         tasks={columns.pending}
+        changeStatus={changeStatus}
         />
 
       <KanbanColumn
         title="In Progress"
         status="in-progress"
         tasks={columns["in-progress"]}
+        changeStatus={changeStatus}
         />
 
       <KanbanColumn
         title="Completed"
         status="completed"
         tasks={columns.completed}
+        changeStatus={changeStatus}
       />
        <DragOverlay>
       {activeTask ? (

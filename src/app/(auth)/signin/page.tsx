@@ -51,21 +51,15 @@ export default function SignInForm() {
     // small delay ensures session is set
     setTimeout(() => {
       router.push("/dashboard");
-<<<<<<< HEAD
+
     }, 300);
   }
-};  return (
-    <div className="flex justify-center items-center min-h-screen ">
-      <div className="w-full max-w-md p-8 space-y-8  rounded-lg shadow-md">
-=======
-    }
-
-  };
+}; 
 
   return (
     <div className="flex justify-center items-center min-h-screen  ">
       <div className="w-full max-w-md p-6 space-y-4   rounded-lg shadow-md">
->>>>>>> 47afdf0 (Fix kanban responsiveness + mobile status update)
+
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mt-0 mb-6">
             <Link href="/" className="font-bold text-[4rem] tracking-tight font-syne">
