@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import {
   Form,
   FormField,
@@ -17,9 +17,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { signInSchema } from '@/schemas/signInSchema';
+import { useEffect } from 'react';
 
 export default function SignInForm() {
   const router = useRouter();
+  const { status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/dashboard");
+    }
+  }, [status, router]);
 
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -29,7 +37,7 @@ export default function SignInForm() {
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+ const onSubmit = async (data: z.infer<typeof signInSchema>) => {
   const result = await signIn("credentials", {
     redirect: false,
     identifier: data.identifier,
@@ -37,25 +45,11 @@ export default function SignInForm() {
   });
 
   if (result?.error) {
-    if (result.error === "CredentialsSignin") {
-      toast.error("Incorrect username or password");
-    } else {
-      toast.error(result.error);
-    }
-    return;
-  }
-
-  if (result?.ok) {
+    toast.error("Incorrect username or password");
+  } else {
     toast.success("Login successful");
-
-    // small delay ensures session is set
-    setTimeout(() => {
-      router.push("/dashboard");
-
-    }, 300);
   }
-}; 
-
+};
   return (
     <div className="flex justify-center items-center min-h-screen  ">
       <div className="w-full max-w-md p-6 space-y-4   rounded-lg shadow-md">
