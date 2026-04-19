@@ -23,18 +23,18 @@ export default function EmptyState({
   onClick,
 }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center text-center py-20 space-y-4">
+    <div className="flex flex-col items-center justify-center text-center py-20 space-y-4 ">
       
       {/* Icon */}
-      <div className="text-muted-foreground text-5xl">
+      <div className=" text-5xl  text-[#050a10]">
         {icon}
       </div>
 
       {/* Title */}
-      <h2 className="text-xl font-semibold">{title}</h2>
+      <h2 className="text-xl font-semibold text-[#050a10]" >{title}</h2>
 
       {/* Description */}
-      <p className="text-sm text-muted-foreground max-w-md">
+      <p className="text-sm  max-w-md  text-[#050a10]">
         {description}
       </p>
 
@@ -46,7 +46,7 @@ export default function EmptyState({
           </Button>
         </Link>
       ) : (
-        <Button className="mt-4" onClick={onClick}>
+        <Button className="mt-4 text-[#4fffb0] bg-[#050a10]" onClick={onClick}>
           {buttonLabel}
         </Button>
       )}

@@ -48,13 +48,13 @@ export function CreateTaskModal({ projectId,open, setOpen }: Props) {
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       {!isControlled && (
         <DialogTrigger asChild>
-          <Button>Add Task</Button>
+          <Button className="text-[#4fffb0] bg-[#050a10] hover:bg-[#050a10]/90 border ">Add Task</Button>
         </DialogTrigger>
       )}
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create Task</DialogTitle>
+          <DialogTitle className="text-[#4fffb0] ">Create Task</DialogTitle>
         </DialogHeader>
 
         <form
@@ -100,7 +100,7 @@ export function CreateTaskModal({ projectId,open, setOpen }: Props) {
             </SelectContent>
           </Select>
 
-          <Button type="submit" disabled={isPending}>
+          <Button type="submit" disabled={isPending} className="bg-[#4fffb0] text-[#050a10] hover:bg-[#04fffb0]/90 border ">
             {isPending ? "Creating..." : "Create Task"}
           </Button>
         </form>

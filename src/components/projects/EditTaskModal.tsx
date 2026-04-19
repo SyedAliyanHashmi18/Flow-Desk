@@ -71,7 +71,7 @@ export default function EditTaskModal({
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit Project</DialogTitle>
+          <DialogTitle className="text-[#4fffb0]">Edit Project</DialogTitle>
         </DialogHeader>
 
         <form action={onSubmit} className="space-y-4">
@@ -118,7 +118,7 @@ export default function EditTaskModal({
             name="dueDate"
           />
 
-          <Button type="submit" disabled={isPending} className="w-full">
+          <Button type="submit" disabled={isPending}  className=" w-full bg-[#4fffb0] text-[#050a10] hover:bg-[#04fffb0]/90" >
             {isPending ? "Updating..." : "Update Project"}
           </Button>
 

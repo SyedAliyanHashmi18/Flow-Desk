@@ -3,12 +3,9 @@ import MetricsCards from "@/components/dashboard/MetricsCards";
 import TaskDistributionChart from "@/components/dashboard/TaskDistributionChart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getDashboardAnalytics } from "@/lib/data/dashboard";
-import TaskModel from "@/models/task";
 import { redirect } from "next/navigation";
 import ProductivityChart from "@/components/dashboard/ProductivityChart";
 import UpcomingTasks from "@/components/dashboard/UpcomingTask";
-import { Button } from "@/components/ui/button";
-import ProjectModel from "@/models/project";
 
 
 export default async function DashboardPage() {
@@ -24,17 +21,17 @@ export default async function DashboardPage() {
 
   return (
     <>
-    <div className="space-y-6 ">
+    <div className="space-y-6  " >
 
       {/* Metrics Cards */}
-      <MetricsCards
+      <MetricsCards 
         totalProjects={analytics.totalProjects}
         completedTasks={analytics.completedTasks}
         pendingTasks={analytics.pendingTasks}
         inProgressTasks={analytics.inprogressTasks}
       />
 {/* productivity insight */}
-        <Card className="hover:shadow-md hover:scale-101">
+        <Card className="hover:shadow-md hover:scale-101 bg-[rgba(8,11,20,0.85)]">
           <CardHeader>
             <CardTitle>Productivity Insight</CardTitle>
           </CardHeader>
@@ -45,9 +42,9 @@ export default async function DashboardPage() {
           </CardContent>
         </Card>
       {/* Charts Section */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* //productivity chart  */}
-        <Card className="hover:shadow-md hover:scale-101">
+        <Card className="hover:shadow-md hover:scale-101 bg-[rgba(8,11,20,0.85)]">
         <CardHeader>
           <CardTitle>Productivity (Last 7 Days)</CardTitle>
         </CardHeader>
@@ -57,7 +54,7 @@ export default async function DashboardPage() {
       </Card>
 
       {/* //task distribution chart */}
-        <Card className="hover:shadow-md hover:scale-101">
+        <Card className="hover:shadow-md hover:scale-101 bg-[rgba(8,11,20,0.85)]">
           <CardHeader>
             <CardTitle>Task Distribution</CardTitle>
           </CardHeader>
@@ -70,7 +67,7 @@ export default async function DashboardPage() {
       </div>
       <div className="grid lg:grid-cols-2 gap-6">
         {/* priority breakdown */}
-        <Card className="hover:shadow-md hover:scale-101">
+        <Card className="hover:shadow-md hover:scale-101 bg-[rgba(8,11,20,0.85)]">
           <CardHeader>
             <CardTitle>Priority Breakdown</CardTitle>
           </CardHeader>
@@ -83,7 +80,7 @@ export default async function DashboardPage() {
         </Card>
 
         {/* upcoming deadlines */}
-        <Card className="hover:shadow-md hover:scale-101">
+        <Card className="hover:shadow-md hover:scale-101 bg-[rgba(8,11,20,0.85)]">
         <CardHeader>
           <CardTitle>Upcoming Deadlines</CardTitle>
         </CardHeader>

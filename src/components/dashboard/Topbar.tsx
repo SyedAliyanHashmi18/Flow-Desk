@@ -32,7 +32,7 @@ export default function Topbar() {
 if (!mounted) return null;
   
   return (
-      <header className="flex items-center justify-between w-full h-16 px-4 border-b  bg-background">
+      <header className="flex items-center justify-between w-full h-16 px-4 bg-[rgba(8,11,20,0.85)] ">
       
         <div className="lg:hidden ">
         <Sheet>
@@ -59,13 +59,13 @@ if (!mounted) return null;
         <Badge variant="secondary">Free</Badge>
 
         {/* Theme toggle button (optional) */}
-        <Button
+        {/* <Button
           variant="outline"
           size="icon"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
           {theme === "dark" ? <Sun size={16}/> : <Moon size={16}/>}
-        </Button>
+        </Button> */}
         {/* Avatar + Dropdown */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

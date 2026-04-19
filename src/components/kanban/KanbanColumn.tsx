@@ -18,13 +18,13 @@ export default function KanbanColumn({ title, tasks, status }: Props) {
   });
 
   return (
-    <Card ref={setNodeRef} className="flex flex-col gap-3 min-h-100 lg:w-125 md:w-80 shrink-0 md:shrink-0">
+    <Card ref={setNodeRef} className=" flex flex-col gap-3 w-full min-h-125 bg-[rgba(8,11,20,0.93)] p-0 pb-4" >
       
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle className="p-4">{title}</CardTitle>
       </CardHeader>
       <AnimatePresence>
-      <CardContent className="space-y-3 w-full">
+      <CardContent className="space-y-3 w-full ">
         {tasks.map((task) => (
           <KanbanTask key={task._id} task={task} />
         ))}

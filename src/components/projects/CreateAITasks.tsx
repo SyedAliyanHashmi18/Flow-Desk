@@ -39,6 +39,7 @@ export function CreateAITasks({ projectId,open, setOpen }: Props) {
   async function onSubmit(formData: FormData) {
     const projectGoal = formData.get("projectGoal")
       startTransition(async () => {
+        try {
         const result = await axios.post(`/api/projects/${projectId}/generate-tasks`,{projectGoal});
   
         if (result?.data.success) {
@@ -46,10 +47,9 @@ export function CreateAITasks({ projectId,open, setOpen }: Props) {
           setDialogOpen(false);
           router.refresh()
           
-        } else {
-          toast.error("Error", {
-            description: result?.data.message || "Something went wrong",
-          });
+        } }catch (error: any) {
+          console.error("AI ERROR:", error);
+          toast.error(error?.response?.data?.message || "An error occurred while generating tasks. Please try again.");
         }
       });
     }
@@ -59,8 +59,8 @@ export function CreateAITasks({ projectId,open, setOpen }: Props) {
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       {!isControlled && (
         <DialogTrigger asChild>
-          <Button>Generate AI Tasks  
-            <Badge variant="secondary" className="flex items-center gap-1">
+          <Button className="text-[#4fffb0] bg-[#050a10] hover:bg-[#050a10]/90 border ">Generate AI Tasks  
+            <Badge variant="secondary" className="flex items-center gap-1 text-[#4fffb0] bg-non">
                           <Sparkles size={14} />
                           AI
                         </Badge>
@@ -70,7 +70,7 @@ export function CreateAITasks({ projectId,open, setOpen }: Props) {
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Project Idea</DialogTitle>
+          <DialogTitle className="text-[#4fffb0]">Project Idea</DialogTitle>
         </DialogHeader>
 
         <form action={onSubmit} className="space-y-4">
@@ -80,7 +80,7 @@ export function CreateAITasks({ projectId,open, setOpen }: Props) {
             placeholder="Write your project goal here.."
           />
           
-          <Button type="submit" disabled={isPending}>
+          <Button type="submit" disabled={isPending} className="bg-[#4fffb0] text-[#050a10]  hover:bg-[#4fffb0]/90 border ">
             {isPending ? "Generating..." : "Generate Task"}
           </Button>
         </form>

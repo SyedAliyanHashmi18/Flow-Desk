@@ -57,10 +57,10 @@ export default function Filters({ projectId, setTasks }: any) {
 
       {/* Status */}
       <Select  value={filters.status || undefined} onValueChange={(value) => handleFilterChange("status", value)}>
-        <SelectTrigger className="w-37.5">
-          <SelectValue placeholder="Status" />
+        <SelectTrigger className="w-37.5 ">
+          <SelectValue placeholder="Status" className="bg-[rgba(8,11,20,0.85)]" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-[rgba(8,11,20,0.85)] ">
           <SelectItem value="pending">Pending</SelectItem>
           <SelectItem value="in-progress">In Progress</SelectItem>
           <SelectItem value="completed">Completed</SelectItem>
@@ -72,13 +72,13 @@ export default function Filters({ projectId, setTasks }: any) {
         <SelectTrigger className="w-37.5">
           <SelectValue placeholder="Priority" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-[rgba(8,11,20,0.85)]">
           <SelectItem value="low">Low</SelectItem>
           <SelectItem value="medium">Medium</SelectItem>
           <SelectItem value="high">High</SelectItem>
         </SelectContent>
       </Select>
-            <Button variant="secondary" onClick={handleReset}>
+            <Button variant="secondary" onClick={handleReset} className="bg-[rgba(8,11,20,0.85)]">
             Reset Filters
             </Button>
     </div>

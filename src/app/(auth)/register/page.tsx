@@ -184,7 +184,7 @@ export function page() {
                 )}
             />
             <Button type="submit" 
-                className="hidden md:inline-block bg-[#4fffb0] text-[#050a10] px-[1.4rem] py-[0.55rem] rounded-xl font-bold text-[0.9rem] hover:opacity-90 transition-all hover:-translate-y-px"
+                className=" md:inline-block bg-[#4fffb0] text-[#050a10] px-[1.4rem] py-[0.55rem] rounded-xl font-bold text-[0.9rem] hover:opacity-90 transition-all hover:-translate-y-px"
             
             disabled={isSubmitting }>
               {
@@ -199,7 +199,7 @@ export function page() {
         <div className="text-center mt-4">
           <p>
             Already a member?{' '}
-            <Link href="/signin" className="text-blue-600 hover:text-blue-800">
+            <Link href="/signin"  className="text-[#4fffb0] hover:text-[#08b065]">
               Sign In
             </Link>
           </p>

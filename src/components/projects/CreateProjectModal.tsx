@@ -60,14 +60,14 @@ export default function CreateProjectModal({ open, setOpen }: Props) {
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       
       {!isControlled && (
-        <DialogTrigger asChild>
+        <DialogTrigger asChild className="text-[#4fffb0] bg-[#050a10] hover:bg-[#050a10]/90 border ">
           <Button>New Project</Button>
         </DialogTrigger>
       )}
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create New Project</DialogTitle>
+          <DialogTitle className="text-[#4fffb0]">Create New Project</DialogTitle>
         </DialogHeader>
 
         <form action={onSubmit} className="space-y-4">
@@ -90,7 +90,7 @@ export default function CreateProjectModal({ open, setOpen }: Props) {
             </SelectContent>
           </Select>
 
-          <Button type="submit" disabled={isPending} className="w-full">
+          <Button type="submit" disabled={isPending} className="w-full bg-[#4fffb0] text-[#050a10] ">
             {isPending ? "Creating..." : "Create Project"}
           </Button>
         </form>

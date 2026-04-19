@@ -1,3 +1,5 @@
+'use client'
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 const stats = [
@@ -8,6 +10,8 @@ const stats = [
 ];
 
 export function Hero() {
+  const { data: session } = useSession();
+    const user = session?.user;
   return (
     <section className="min-h-screen flex flex-col items-center justify-center text-center px-[5%] pt-32 pb-20 relative">
       {/* Glow */}
@@ -49,12 +53,20 @@ export function Hero() {
         className="flex gap-4 mt-10 flex-wrap justify-center animate-fade-up"
         style={{ animationDelay: "0.3s" }}
       >
-        <Link
-          href="#cta"
+        
+        {!user ? (
+              <>
+                <Link
+          href="/register"
           className="bg-[#4fffb0] text-[#050a10] px-8 py-[0.85rem] rounded-[10px] font-bold text-base hover:-translate-y-0.5 transition-all shadow-[0_0_30px_rgba(78,255,176,0.25)] hover:shadow-[0_0_40px_rgba(78,255,176,0.4)]"
         >
           Start for free →
         </Link>
+                
+              </>
+            ) : (
+              <></>
+            )}
         <Link
           href="#how"
           className="bg-transparent border border-white/[0.07] text-[#f0f4ff] px-8 py-[0.85rem] rounded-[10px] font-medium text-base hover:border-white/20 hover:bg-white/4 transition-all"

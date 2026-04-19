@@ -1,5 +1,7 @@
 "use client";
 
+import { Link } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 export function CTA() {
@@ -15,6 +17,8 @@ export function CTA() {
     setMessage({ text: `🎉 You're on the list! We'll be in touch at ${trimmed}`, isError: false });
     setEmail("");
   }
+  const { data: session } = useSession();
+    const user = session?.user;
 
   return (
     <section
@@ -45,22 +49,7 @@ export function CTA() {
         Start managing your projects, tasks, and workflows in one place — free forever.
       </p>
 
-      <div className="flex gap-3 justify-center flex-wrap max-w-125 mx-auto relative">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-          placeholder="Enter your work email"
-          className="flex-1 min-w-55 bg-[#111827] border border-white/[0.07] text-[#f0f4ff] rounded-[10px] px-5 py-[0.85rem] text-[0.95rem] outline-none focus:border-[rgba(78,255,176,0.4)] placeholder:text-[#8892a4] transition-colors"
-        />
-        <button
-          onClick={handleSubmit}
-          className="bg-[#4fffb0] text-[#050a10] px-8 py-[0.85rem] rounded-[10px] font-bold text-base hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(78,255,176,0.4)] transition-all shadow-[0_0_30px_rgba(78,255,176,0.25)]"
-        >
-          Get started →
-        </button>
-      </div>
+      
 
       {message && (
         <p

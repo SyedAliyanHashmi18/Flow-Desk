@@ -11,6 +11,7 @@ import { startTransition } from "react";
 import {  handleDeleteTask } from "@/app/(dashboard)/projects/actions";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 interface Task {
      _id: string;
@@ -27,10 +28,11 @@ interface Task {
 }
 
 interface Props{
-    task: Task
+    task: Task,
+    changeStatus: (taskId: string, status: string) => void;
 }
 
-export default function KanbanTask({ task } : Props) {
+export default function KanbanTask({ task, changeStatus } : Props) {
 
   function deleteTaskHandler() {
       startTransition(async () => {
@@ -70,13 +72,13 @@ export default function KanbanTask({ task } : Props) {
       ref={setNodeRef}
         {...attributes}
         // style={style}
-      className="p-4 cursor-grab max-w-full active:cursor-grabbing w-full">
+      className="p-4 cursor-grab max-w-full active:cursor-grabbing w-full bg-[rgba(8,11,20,0.85)]">
 
         <div {...listeners}>
         <CardHeader className="space-y-3">
 
         <div className="flex justify-between items-start">
-          <CardTitle className="text-base font-semibold">
+          <CardTitle className="text-base font-semibold text-[#4fffb0] ">
             {task.title}
           </CardTitle>
           
@@ -84,7 +86,7 @@ export default function KanbanTask({ task } : Props) {
 
           {task.aiGenerated && (
             <Badge variant="secondary" className="flex items-center gap-1">
-              <Sparkles size={14} />
+              <Sparkles size={14}  className="text-[#4fffb0]"/>
               AI
             </Badge>
           )}
@@ -129,10 +131,24 @@ export default function KanbanTask({ task } : Props) {
               Due: {new Date(task.dueDate).toLocaleDateString()}
             </div>
           )}
+          <div className="lg:hidden ">
+                <Select  
+                  value={task.status}
+                  onValueChange={(value) => changeStatus(task._id, value)}
+                >
+                  <SelectTrigger className="w-37.5 ">
+                    <SelectValue placeholder= {task.status} className="bg-[rgba(8,11,20,0.85)]" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[rgba(8,11,20,0.85)] ">
+                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="in-progress">In Progress</SelectItem>
+                    <SelectItem value="completed">Completed</SelectItem>
+                  </SelectContent>
+                </Select>
+                </div>
         </div>
-
       </CardContent>
-
+          
       </div>
 
       {/* 🔹 Footer */}
@@ -143,7 +159,7 @@ export default function KanbanTask({ task } : Props) {
         <span>
           Updated: {new Date(task.updatedAt).toLocaleDateString()}
         </span>
-        <div className=" gap-2">
+        <div className=" gap-2 lg:flex">
                       <EditTaskModal
                         id={task._id}
                         projectId={task.projectId}
@@ -155,7 +171,7 @@ export default function KanbanTask({ task } : Props) {
                       />
                           <AlertDialog>
                         <AlertDialogTrigger asChild>
-                          <button>
+                          <button className="p-2 hover:bg-muted rounded-md">
                             <Trash size={16} />
                           </button>
                         </AlertDialogTrigger>
@@ -169,7 +185,7 @@ export default function KanbanTask({ task } : Props) {
           
                           <div className="flex justify-end gap-2">
                             <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction onClick={deleteTaskHandler}>
+                            <AlertDialogAction onClick={deleteTaskHandler} className="bg-red-600 text-white hover:bg-red-700">
                               Delete
                             </AlertDialogAction>
                           </div>

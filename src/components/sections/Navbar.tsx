@@ -73,7 +73,7 @@ export function Navbar() {
           side="right"
           className="bg-[#0d1220] border-l border-white/[0.07] text-[#f0f4ff]"
         >
-          <div className="flex flex-col gap-6 mt-8">
+          <div className="flex flex-col gap-6 mt-8 p-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -84,13 +84,26 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="#cta"
+            {!user ? (
+              <>
+                <Link href="/signin"
+                              className="bg-[#4fffb0] text-[#050a10] px-6 py-3 rounded-xl font-bold text-center hover:opacity-90 transition-opacity"
               onClick={() => setOpen(false)}
+
+                >
+                  Start Free Trial
+                </Link>
+                
+              </>
+            ) : (
+              <Link href="/dashboard"
               className="bg-[#4fffb0] text-[#050a10] px-6 py-3 rounded-xl font-bold text-center hover:opacity-90 transition-opacity"
-            >
-              Start Free Trial
-            </Link>
+              onClick={() => setOpen(false)}
+
+              >
+                Dashboard
+              </Link>
+            )}
           </div>
         </SheetContent>
       </Sheet>

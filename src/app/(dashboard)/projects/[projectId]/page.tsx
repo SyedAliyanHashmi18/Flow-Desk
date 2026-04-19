@@ -60,12 +60,12 @@ export default async function ProjectDetailsPage({
   return (
     <div className="space-y-8 p-4 md:p-6 lg:p-4">
        
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between  gap-4">
         <div>
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-2xl font-bold ">
             {project.title}
           </h1>
-          <p className="text-muted-foreground mt-2">
+          <p className="mt-2  text-[#c7cbd0]">
             {project.description || "No description provided."}
           </p>
         </div>
@@ -76,7 +76,7 @@ export default async function ProjectDetailsPage({
               {/* <ImproveAItasks projectId={projectId}/> */}
         </div>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <FeaturesButton projectId={projectId.toString()} user={user} />
+              {/* <FeaturesButton projectId={projectId.toString()} user={user} /> */}
               <CreateAITasks projectId={projectId}/>
 
               <CreateTaskModal projectId={projectId}  />
@@ -87,10 +87,11 @@ export default async function ProjectDetailsPage({
       </div>
 
       
-        <div className="grid gap-4">
+        <div className="grid gap-4 ">
           <ProjectClient
         initialTasks={tasks}
         projectId={projectId}
+        
       />
           {/* <KanbanBoard tasks={tasks} projectId={projectId} /> */}
         </div>

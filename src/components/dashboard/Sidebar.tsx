@@ -7,22 +7,23 @@ import Link from "next/link";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { useSession, signOut } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useState } from "react";
 
 export default function Sidebar() {
   const { data: session } = useSession();
+  
 
   return (
-    <aside className=" 
-w-64 flex-col h-screen bg-[rgba(8,11,20,0.85)] border-r p-4  md:flex justify-between ">
+    <aside className="w-64 lg:w-55 flex-col h-screen  border-r p-4  md:flex justify-between ">
       
       {/* Top Items */}
       <div className="flex flex-col space-y-2">
         
-        <Link href="/" className="font-bold text-[1.4rem] text-white tracking-tight font-syne">
+        <Link href="/" className="font-bold text-[1.4rem] text-white tracking-tight font-syne"  >
             Flow<span className="text-[#4fffb0]">Desk.</span>
           </Link>
         <Link href="/">
-          <Button variant="ghost" className="w-full text-[#4fffb0] justify-start" >Home</Button>
+          <Button variant="ghost" className="w-full text-[#4fffb0] justify-start"  >Home</Button>
         </Link>
         <Link href="/dashboard">
           <Button variant="ghost" className="w-full text-white justify-start">Dashboard</Button>

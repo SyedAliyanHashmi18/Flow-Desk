@@ -53,14 +53,14 @@ export default function EditProjectModal({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className="p-2 hover:bg-muted rounded-md">
+        <button className="p-2 hover:bg-muted rounded-md text-[#4fffb0]">
           <Pencil size={16} />
         </button>
       </DialogTrigger>
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit Project</DialogTitle>
+          <DialogTitle className="text-[#4fffb0]">Edit Project</DialogTitle>
         </DialogHeader>
 
         <form action={onSubmit} className="space-y-4">
@@ -88,7 +88,7 @@ export default function EditProjectModal({
             <option value="archived">Archived</option>
           </select>
 
-          <Button type="submit" disabled={isPending} className="w-full">
+          <Button type="submit" disabled={isPending} className="w-full bg-[#4fffb0] text-[#050a10] hover:bg-[#4fffb0]/90">
             {isPending ? "Updating..." : "Update Project"}
           </Button>
 

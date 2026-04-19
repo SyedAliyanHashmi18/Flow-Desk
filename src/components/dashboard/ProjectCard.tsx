@@ -66,14 +66,14 @@ function deleteProjectHandler() {
 
 
   return (
-      <Card className="group hover:scale-[1.02] transition-transform hover:shadow-lg cursor-pointer border-muted/40 hover:border-primary/30">
+      <Card className="group hover:scale-[1.02] bg-[rgba(8,11,20,0.85)] transition-transform hover:shadow-lg cursor-pointer border-muted/40 hover:border-primary/30">
         
         <CardHeader className="space-y-2">
           
           {/* Title + AI badge */}
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg font-semibold">
-              {title}
+            <CardTitle className="text-lg font-semibold text-[#c1c5cb]">
+              {title.toLocaleUpperCase()}
             </CardTitle>
             <div className="flex items-center gap-2">
             <EditProjectModal
@@ -85,7 +85,7 @@ function deleteProjectHandler() {
                 <AlertDialog>
               <AlertDialogTrigger asChild>
                 <button>
-                  <Trash size={16} />
+                  <Trash size={16} className="text-red-300" />
                 </button>
               </AlertDialogTrigger>
 
@@ -98,7 +98,7 @@ function deleteProjectHandler() {
 
                 <div className="flex justify-end gap-2">
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={deleteProjectHandler}>
+                  <AlertDialogAction onClick={deleteProjectHandler} disabled={isPending} className="bg-red-500 hover:bg-red-600 text-white" >
                     Delete
                   </AlertDialogAction>
                 </div>
@@ -106,7 +106,7 @@ function deleteProjectHandler() {
             </AlertDialog>
           </div>
             {aiGenerated && (
-              <Badge variant="secondary" className="flex items-center gap-1">
+              <Badge variant="secondary" className="flex items-center gap-1 ">
                 <Sparkles size={14} />
                 AI
               </Badge>
@@ -119,10 +119,10 @@ function deleteProjectHandler() {
 
           {/* Status badge */}
           <div>
-            <Badge
+            <Badge className="text-[#4fffb0] bg-non"
               variant={status === "active" ? "default" : "outline"}
             >
-              {status}
+              - {status.toUpperCase()}
             </Badge>
           </div>
 
