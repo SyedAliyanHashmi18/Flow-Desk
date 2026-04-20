@@ -44,37 +44,7 @@ export const authOptions : NextAuthConfig = {
                     throw new Error("Invalid credentials");
                 }
             }
-            // async authorize(credentials: any) {
-            // await dbConnect();
-
-            // if (!credentials?.identifier || !credentials?.password) {
-            //     return null;
-            // }
-
-            // const user = await UserModel.findOne({
-            //     $or: [
-            //     { email: credentials.identifier.toLowerCase() },
-            //     { username: credentials.identifier.toLowerCase() },
-            //     ],
-            // });
-
-            // if (!user) return null;
-
-            // const isPasswordValid = await bcrypt.compare(
-            //     credentials.password,
-            //     user.passwordHash
-            // );
-
-            // if (!isPasswordValid) return null;
-
-            // return {
-            //     _id: user._id.toString(),
-            //     email: user.email,
-            //     username: user.username,
-            //     role: user.role,
-            //     plan: user.plan,
-            // };
-            // }
+            
         })
     ],callbacks:{
         async jwt({ token, user }: any) {
@@ -110,5 +80,6 @@ export const authOptions : NextAuthConfig = {
         sessionToken: {
             name: `next-auth.session-token`,
         },
-        },
+    },
+    
 };
