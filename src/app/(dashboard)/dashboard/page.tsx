@@ -1,4 +1,4 @@
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import MetricsCards from "@/components/dashboard/MetricsCards";
 import TaskDistributionChart from "@/components/dashboard/TaskDistributionChart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

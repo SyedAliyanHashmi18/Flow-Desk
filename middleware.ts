@@ -1,16 +1,9 @@
-import { getToken } from "next-auth/jwt";
-import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@/auth"; 
+import { NextResponse } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  const token = await getToken({
-    req: request,
-    secret: process.env.NEXTAUTH_SECRET,
-    salt: "authjs.session-token", // 🔥 THIS IS THE FIX
-  });
-
-  console.log("TOKEN:", token);
-
-  const { pathname } = request.nextUrl;
+export default auth((req) => {
+  const isLoggedIn = !!req.auth;
+  const { pathname } = req.nextUrl;
 
   const isAuthPage =
     pathname.startsWith("/signin") || pathname.startsWith("/register");
@@ -20,13 +13,23 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith("/api/projects") ||
     pathname.startsWith("/api/tasks");
 
-  if (token && isAuthPage) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+  if (isLoggedIn && isAuthPage) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
-  if (!token && isProtectedRoute) {
-    return NextResponse.redirect(new URL("/signin", request.url));
+  if (!isLoggedIn && isProtectedRoute) {
+    return NextResponse.redirect(new URL("/signin", req.url));
   }
 
   return NextResponse.next();
-}
+});
+
+export const config = {
+  matcher: [
+    "/dashboard/:path*",
+    "/signin",
+    "/register",
+    "/api/projects/:path*",
+    "/api/tasks/:path*",
+  ],
+};

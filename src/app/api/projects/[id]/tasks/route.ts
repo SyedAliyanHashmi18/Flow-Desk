@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import { createTask } from "@/lib/data/tasks";
 
 

@@ -1,6 +1,6 @@
 import ProjectModel from "@/models/project";
 import dbConnect from "../dbConnect";
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import mongoose, { Types } from "mongoose";
 import { updateProjectSchema } from "../validators/updateProject";

@@ -1,4 +1,4 @@
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import dbConnect from "@/lib/dbConnect";
 import TaskModel from "@/models/task";
 import { success } from "zod";

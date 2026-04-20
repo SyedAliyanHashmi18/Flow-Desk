@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Team from "@/models/Team";
 import TeamMember from "@/models/TeamMember";
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 
 export async function POST(req: Request) {
   await dbConnect();

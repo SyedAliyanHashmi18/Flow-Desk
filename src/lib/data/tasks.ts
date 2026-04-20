@@ -2,7 +2,7 @@ import TaskModel from "@/models/task";
 import dbConnect from "../dbConnect";
 import ProjectModel from "@/models/project";
 import mongoose, { Types } from "mongoose";
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import { notFound, redirect } from "next/navigation";
 import { taskSchema } from "../validators/task";
 import { updateTaskSchema } from "../validators/updateTask";

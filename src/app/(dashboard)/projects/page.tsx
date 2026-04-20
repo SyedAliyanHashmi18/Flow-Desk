@@ -1,4 +1,4 @@
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import { getProjectsByUserId } from "@/lib/data/project";
 import { redirect } from "next/navigation";
 import ProjectCard from "@/components/dashboard/ProjectCard";

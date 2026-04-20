@@ -1,4 +1,4 @@
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import dbConnect from "../dbConnect";
 import { redirect } from "next/navigation";
 import ProjectModel from "@/models/project";

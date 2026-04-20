@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import TaskModel from "@/models/task";
 import { hasFeature } from "@/lib/feature/checkFeature";
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 export async function GET(req: Request, { params }: {params : Promise<{id: string}>}) {
   await dbConnect();
 

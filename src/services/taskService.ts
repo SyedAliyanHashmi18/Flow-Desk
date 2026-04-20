@@ -1,4 +1,4 @@
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import { improveTasks } from "@/lib/ai/improveTask";
 import { AITaskSchema } from "@/lib/ai/validateAIOutput";
 import dbConnect from "@/lib/dbConnect";

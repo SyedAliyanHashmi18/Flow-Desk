@@ -1,4 +1,4 @@
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import { generateTasks } from "@/lib/ai/generateTasks";
 import dbConnect from "@/lib/dbConnect";
 import { checkAIRateLimit } from "@/services/aiService";

@@ -1,7 +1,7 @@
 import Sidebar from "@/components/dashboard/Sidebar";
 import Topbar from "@/components/dashboard/Topbar";
 import { redirect } from "next/navigation";
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 // import MobileSidebar from "@/components/dashboard/MobileSidebar";
 
 export default async function DashboardLayout({

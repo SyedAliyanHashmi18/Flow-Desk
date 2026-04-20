@@ -1,4 +1,4 @@
-import { auth } from "@/app/auth";
+import { auth } from "@/auth";
 import { redirect, notFound } from "next/navigation";
 import { getProjectsByUserId } from "@/lib/data/project";
 import { getTasksByProjectId } from "@/lib/data/tasks";
